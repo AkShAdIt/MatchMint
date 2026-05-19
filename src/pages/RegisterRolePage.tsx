@@ -51,8 +51,10 @@ export const RegisterRolePage = () => {
   const handleRoleSelect = (roleId: string) => {
     if (roleId === 'player') {
       navigate('/register/tournament');
-    } else {
-      alert(`Opening ${roleId} placeholder flow...`);
+    } else if (roleId === 'organizer') {
+      navigate('/register/organizer');
+    } else if (roleId === 'owner') {
+      navigate('/register/owner');
     }
   };
 

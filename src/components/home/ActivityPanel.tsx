@@ -13,7 +13,7 @@ export const ActivityPanel = () => {
   };
 
   return (
-    <div className="bg-card border border-white/5 rounded-2xl p-5 mt-6 hidden xl:block hover:border-primary/20 hover:shadow-[0_0_20px_rgba(255,90,0,0.05)] transition-all duration-500">
+    <div className="bg-card border border-white/5 rounded-2xl p-5 mt-6 hidden xl:block hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500">
       <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
         Activity Feed
       </h3>

@@ -3,7 +3,7 @@ import { newsAnnouncements } from '../../data/mockData';
 
 export const NewsPanel = () => {
   return (
-    <div className="bg-card border border-white/5 rounded-2xl p-5 hover:border-primary/20 hover:shadow-[0_0_20px_rgba(255,90,0,0.05)] transition-all duration-500">
+    <div className="bg-card border border-white/5 rounded-2xl p-5 hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500">
       <h3 className="font-poppins font-medium text-gray-200 mb-4 flex items-center justify-between">
         News & Updates
         <span className="text-[10px] uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { featuredMatches } from '../../data/mockData';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const FeaturedMatch = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!featuredMatches || featuredMatches.length === 0) {
@@ -24,7 +26,10 @@ export const FeaturedMatch = () => {
   };
 
   return (
-    <div className="bg-card border border-white/5 hover:border-primary/30 rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500">
+    <div 
+      className="bg-card border border-white/5 hover:border-primary/30 rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500 cursor-pointer"
+      onClick={() => navigate(`/match/${featuredMatch.id}`)}
+    >
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-[50px] -mr-10 -mt-10 group-hover:bg-primary/30 transition-colors duration-500"></div>
       
@@ -42,7 +47,7 @@ export const FeaturedMatch = () => {
 
       <div className="flex items-center justify-between mb-8 relative z-10">
         <button 
-          onClick={handlePrev}
+          onClick={(e) => { e.stopPropagation(); handlePrev(); }}
           className="h-8 w-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors focus:outline-none"
         >
           <ChevronLeft className="h-4 w-4 text-gray-400" />
@@ -73,7 +78,7 @@ export const FeaturedMatch = () => {
         </div>
 
         <button 
-          onClick={handleNext}
+          onClick={(e) => { e.stopPropagation(); handleNext(); }}
           className="h-8 w-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors focus:outline-none"
         >
           <ChevronRight className="h-4 w-4 text-gray-400" />
@@ -98,7 +103,7 @@ export const FeaturedMatch = () => {
         {featuredMatches.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentIndex(idx)}
+            onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               idx === currentIndex ? 'w-4 bg-primary' : 'w-1.5 bg-white/20 hover:bg-white/40'
             }`}

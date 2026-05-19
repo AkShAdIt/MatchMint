@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Filter, ChevronDown } from 'lucide-react';
 import { todayMatches } from '../../data/mockData';
 
 export const MainSection = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('ongoing');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -39,7 +41,7 @@ export const MainSection = () => {
   return (
     <main className="flex-1 max-w-4xl min-w-0">
       {/* Header Controls */}
-      <div className="bg-card border border-white/5 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-24 z-10">
+      <div className="bg-card border border-white/5 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-24 z-10 hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500">
         <h2 className="text-xl font-poppins font-semibold whitespace-nowrap">Today's Matches</h2>
         
         <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -81,15 +83,22 @@ export const MainSection = () => {
           </div>
         ) : (
           Object.entries(groupedMatches).map(([tournamentName, matches]) => (
-            <div key={tournamentName} className="bg-card border border-white/5 rounded-2xl overflow-hidden">
-              <div className="bg-card-alt px-5 py-3 border-b border-white/5 flex justify-between items-center">
+            <div key={tournamentName} className="bg-card border border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,90,0,0.15)] transition-all duration-500">
+              <div 
+                className="bg-card-alt px-5 py-3 border-b border-white/5 flex justify-between items-center cursor-pointer hover:bg-white/5 transition-colors"
+                onClick={() => navigate(`/tournament/${matches[0].tournamentId}`)}
+              >
                 <h3 className="font-poppins font-medium text-gray-200">{tournamentName}</h3>
                 <ChevronDown className="h-4 w-4 text-gray-500" />
               </div>
               
               <div className="divide-y divide-white/5">
                 {matches.map((match) => (
-                  <div key={match.id} className="p-5 hover:bg-white/[0.04] hover:shadow-[inset_4px_0_0_0_rgba(255,90,0,1)] transition-all duration-300 group cursor-pointer">
+                  <div 
+                    key={match.id} 
+                    className="p-5 hover:bg-white/[0.04] hover:shadow-[inset_4px_0_0_0_rgba(255,90,0,1)] transition-all duration-300 group cursor-pointer"
+                    onClick={() => navigate(`/match/${match.id}`)}
+                  >
                     <div className="flex flex-wrap gap-2 justify-between items-center mb-3">
                       <span className="text-xs text-gray-500 font-medium tracking-wide uppercase">
                         {match.matchType} • {match.venue}
